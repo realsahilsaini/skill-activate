@@ -1,0 +1,40 @@
+{
+  "name": "skill-activate",
+  "version": "0.1.0",
+  "description": "Fix Claude Code skill activation. One command lifts activation from 20% to 84%.",
+  "type": "module",
+  "bin": {
+    "skill-activate": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "pack:check": "npm pack --dry-run"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "anthropic",
+    "ai",
+    "skills",
+    "mcp"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "js-yaml": "^4.1.0",
+    "ora": "^8.1.0"
+  }
+}
