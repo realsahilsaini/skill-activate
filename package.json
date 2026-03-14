@@ -1,6 +1,6 @@
 {
   "name": "skill-activate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Fix Claude Code skill activation. One command lifts activation from 20% to 84%.",
   "type": "module",
   "bin": {

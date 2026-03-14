@@ -86,6 +86,12 @@ node bin/cli.js install
 - macOS and Linux (native shell hook execution)
 - Windows with WSL for shell hook execution
 
+## Troubleshooting
+
+- Error: `Unknown skill: ...`
+: This usually means the skill id was normalized (for example, `algorithmic-art` changed to `algorithmic art`).
+    Re-run `npx skill-activate install` to refresh the latest hook instructions and ensure the skill identifier from `<available_skills>` is used verbatim in `Skill()` calls.
+
 ## License
 
 MIT

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2026-03-14
+
+### Fixed
+- Strengthened forced-eval hook instructions to require exact skill identifiers from `<available_skills>` in `Skill()` calls (prevents hyphen/space normalization issues like `algorithmic-art` vs `algorithmic art`).
+- Added troubleshooting guidance for `Unknown skill` errors.
+
 ## [0.1.0] - 2026-03-14
 
 ### Added

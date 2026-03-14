@@ -7,9 +7,12 @@ Before responding, you MUST complete these steps in order:
 
 STEP 1 — EVALUATE: For each skill listed in <available_skills>, write one line:
   [skill-name]: YES — [one-line reason it applies] OR NO — [one-line reason it does not]
+  Use the exact skill identifier from <available_skills> (character-for-character).
 
 STEP 2 — ACTIVATE: For every skill you marked YES in Step 1:
   Call the Skill() tool with that skill's name RIGHT NOW.
+  Use the exact skill identifier from <available_skills> verbatim.
+  Do not change spaces, hyphens, punctuation, or casing.
   Do not skip this. Do not defer it. A YES with no Skill() call is a failure.
 
 STEP 3 — IMPLEMENT: Only after all YES skills are activated, proceed with the response.
