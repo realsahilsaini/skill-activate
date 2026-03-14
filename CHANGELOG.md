@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2026-03-14
+
+### Changed
+- Removed percentage-based activation claims from package metadata and README to keep messaging evidence-safe and avoid unsupported numeric assertions.
+- Updated README wording to focus on reliability behavior rather than fixed benchmark numbers.
+
 ## [0.1.2] - 2026-03-14
 
 ### Fixed

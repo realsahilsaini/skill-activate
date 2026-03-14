@@ -4,7 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Node.js >=18](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
 
-Claude Code ignores your skills 80% of the time.
+Claude Code can miss relevant skills when responding to prompts.
 
 `skill-activate` installs a forced-eval hook and rewrites skill descriptions so Claude evaluates and activates relevant skills before every response.
 
@@ -14,11 +14,10 @@ Claude Code ignores your skills 80% of the time.
 npx skill-activate install
 ```
 
-## Before vs after
+## Reliability impact
 
-- Before: ~20% skill activation (most relevant skills silently skipped)
-- After description rewrite only: ~50% to 90% (depends on skill quality)
-- After rewrite + forced-eval hook: ~84% to near 100%
+- Before: skill activation can be inconsistent for relevant prompts.
+- After install: prompts are forced through explicit skill evaluation and activation before implementation.
 
 ## How it works
 
@@ -59,7 +58,7 @@ skill-activate setup report
     → jwt-auth-skill.md
 ✓ Backups saved as .bak files
 
-Expected activation rate: ~84% (was ~20%)
+Activation consistency improved with forced-eval hook.
 ───────────────────────────────────────
 Restart Claude Code to apply changes.
 ```

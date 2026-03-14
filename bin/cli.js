@@ -8,7 +8,7 @@ const program = new Command();
 program
   .name("skill-activate")
   .description("Fix Claude Code skill activation with a forced-eval hook and directive skill descriptions")
-  .version("0.1.2");
+  .version("0.1.3");
 
 program
   .command("install")
