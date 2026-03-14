@@ -1,8 +1,12 @@
 # skill-activate
 
 [![npm version](https://img.shields.io/npm/v/skill-activate.svg)](https://www.npmjs.com/package/skill-activate)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-realsahilsaini%2Fskill--activate-181717?logo=github)](https://github.com/realsahilsaini/skill-activate)
+[![GitHub stars](https://img.shields.io/github/stars/realsahilsaini/skill-activate?style=social)](https://github.com/realsahilsaini/skill-activate/stargazers)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Node.js >=18](https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg)](https://nodejs.org)
+
+Star the repo: https://github.com/realsahilsaini/skill-activate
 
 Claude Code can miss relevant skills when responding to prompts.
 
@@ -13,6 +17,14 @@ Claude Code can miss relevant skills when responding to prompts.
 ```bash
 npx skill-activate install
 ```
+
+Revert to original state anytime:
+
+```bash
+npx skill-activate uninstall
+```
+
+Follow development and contribute: https://github.com/realsahilsaini/skill-activate
 
 ## Reliability impact
 
@@ -78,6 +90,12 @@ node bin/cli.js install
 3. Add or update tests for behavior changes.
 4. Keep changes local-only (no external API dependencies).
 5. Open a PR with a clear before/after summary.
+
+If this helped you, please star and watch the repo for updates:
+
+- Star: https://github.com/realsahilsaini/skill-activate/stargazers
+- Watch: https://github.com/realsahilsaini/skill-activate/watchers
+- Issues: https://github.com/realsahilsaini/skill-activate/issues
 
 ## Compatibility
 
