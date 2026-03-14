@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2026-03-14
+
+### Fixed
+- Added automatic compatibility aliases for hyphenated and underscored skill ids (for example: `algorithmic-art` gets an alias `algorithmic art`) so `Skill()` calls still resolve when the runtime normalizes separators.
+- Added uninstall cleanup for generated compatibility aliases.
+- Added test coverage for alias generation and cleanup lifecycle.
+
 ## [0.1.1] - 2026-03-14
 
 ### Fixed

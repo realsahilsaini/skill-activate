@@ -90,7 +90,8 @@ node bin/cli.js install
 
 - Error: `Unknown skill: ...`
 : This usually means the skill id was normalized (for example, `algorithmic-art` changed to `algorithmic art`).
-    Re-run `npx skill-activate install` to refresh the latest hook instructions and ensure the skill identifier from `<available_skills>` is used verbatim in `Skill()` calls.
+    Re-run `npx skill-activate@latest install` to apply the newest compatibility behavior.
+    Version `0.1.2+` automatically creates compatibility aliases for hyphenated and underscored skill ids.
 
 ## License
 

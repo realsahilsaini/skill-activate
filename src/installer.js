@@ -8,6 +8,7 @@ import { rewriteSkillDescriptions } from "./descriptionRewriter.js";
 import { installHook, removeHook, HOOK_COMMAND, HOOK_FILE_NAME } from "./hookWriter.js";
 import { patchSettings, removeHookFromSettings, isHookConfigured } from "./settingsPatcher.js";
 import { validateSetup } from "./validator.js";
+import { createCompatibilityAliases, removeCompatibilityAliases } from "./skillAliasCompat.js";
 
 function getPaths(options = {}) {
   const homeDir = options.homeDir ?? os.homedir();
@@ -56,6 +57,13 @@ export async function runInstall(options = {}) {
   const rewrittenCount = rewriteResults.filter((item) => item.changed).length;
   rewriteSpinner.succeed(`Rewrote ${rewrittenCount} description(s)`);
 
+  const aliasSpinner = startSpinner("Adding compatibility aliases for hyphenated skill ids");
+  const aliasResult = await createCompatibilityAliases({
+    skillsDir: paths.skillsDir,
+    skillFiles: scanResult.files
+  });
+  aliasSpinner.succeed(`Created ${aliasResult.created.length} compatibility alias(es)`);
+
   const hookSpinner = startSpinner("Step 4/6: Installing forced-eval hook script");
   const hookResult = await installHook({ hookPath: paths.hookPath, templatePath });
   hookSpinner.succeed(hookResult.changed ? "Hook installed/updated" : "Hook already up to date");
@@ -87,6 +95,7 @@ export async function runInstall(options = {}) {
     paths,
     scanResult,
     rewriteResults,
+    aliasResult,
     hookResult,
     patchResult,
     validation
@@ -151,6 +160,7 @@ export async function runUninstall(options = {}) {
   );
 
   const restoreSpinner = startSpinner("Restoring skill backups (*.bak)");
+  const aliasCleanup = await removeCompatibilityAliases({ skillsDir: paths.skillsDir });
   const backupScan = await scanBackupFiles({ skillsDir: paths.skillsDir });
   const restored = [];
 
@@ -167,10 +177,12 @@ export async function runUninstall(options = {}) {
   console.log(`- Hook removed: ${hookRemoval.removed ? "yes" : "no"}`);
   console.log(`- settings.json entries removed: ${settingsResult.removedCount}`);
   console.log(`- Skill files restored from backups: ${restored.length}`);
+  console.log(`- Compatibility aliases removed: ${aliasCleanup.removed.length}`);
 
   return {
     hookRemoval,
     settingsResult,
-    restored
+    restored,
+    aliasCleanup
   };
 }

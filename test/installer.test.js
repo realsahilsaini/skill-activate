@@ -7,7 +7,11 @@ import { runInstall, runStatus, runUninstall } from "../src/installer.js";
 import { patchSettings } from "../src/settingsPatcher.js";
 
 function makeSkillContent(description) {
-  return `---\nname: test-skill\ndescription: \"${description}\"\n---\n# Test\n`;
+  return `---\nname: testskill\ndescription: \"${description}\"\n---\n# Test\n`;
+}
+
+function makeHyphenSkillContent(description) {
+  return `---\nname: algorithmic-art\ndescription: \"${description}\"\n---\n# Test\n`;
 }
 
 async function createTempClaudeHome() {
@@ -171,6 +175,30 @@ test("status reports healthy after install", async () => {
     assert.equal(status.hasHook, true);
     assert.equal(status.wired, true);
     assert.equal(status.skillCount, 1);
+  } finally {
+    await fs.remove(tempRoot);
+  }
+});
+
+test("install creates compatibility alias for hyphenated skill ids and uninstall removes it", async () => {
+  const tempRoot = await fs.mkdtemp(path.join(os.tmpdir(), "skill-activate-alias-"));
+  const homeDir = path.join(tempRoot, "home");
+  const skillDir = path.join(homeDir, ".claude", "skills", "creative");
+  const skillFile = path.join(skillDir, "SKILL.md");
+
+  await fs.ensureDir(skillDir);
+  await fs.writeFile(skillFile, makeHyphenSkillContent("Creates algorithmic art patterns"), "utf8");
+
+  try {
+    const installResult = await runInstall({ homeDir });
+    assert.equal(installResult.aliasResult.created.length, 1);
+
+    const aliasFile = installResult.aliasResult.created[0];
+    assert.equal(await fs.pathExists(aliasFile), true);
+
+    const uninstallResult = await runUninstall({ homeDir });
+    assert.equal(uninstallResult.aliasCleanup.removed.length, 1);
+    assert.equal(await fs.pathExists(aliasFile), false);
   } finally {
     await fs.remove(tempRoot);
   }
